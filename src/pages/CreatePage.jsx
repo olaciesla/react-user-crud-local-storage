@@ -1,23 +1,32 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
-export default function CreateDialog() {
+export default function CreatePage() {
+  const navigate = useNavigate();
   const [name, setName] = useState("");
   const [title, setTitle] = useState("");
   const [mail, setMail] = useState("");
   const [image, setImage] = useState("");
 
   async function createUser(event) {
-    event.preventDefault(); // prevent the default form submission
-    const user = { name, title, mail, image }; // create a user object
-    console.log(user);
+    event.preventDefault();
+
+    const newUser = {
+      // key/name: value from state
+      name: name,
+      title: title,
+      mail: mail,
+      image: image
+    };
 
     const data = localStorage.getItem("users"); // get data from local storage
     console.log(data);
     const usersData = JSON.parse(data) || []; // parse the data from string to javascript array
-    console.log(usersData);
-    usersData.push(user); // add the new user to the array
-    console.log(usersData);
-    localStorage.setItem("users", JSON.stringify(usersData)); // save the array back to local storage
+
+    usersData.push(newUser); // add the new user to the array
+    localStorage.setItem("users", JSON.stringify(usersData)); // save the users array to local storage
+
+    navigate("/"); // navigate to the home page
   }
 
   return (
