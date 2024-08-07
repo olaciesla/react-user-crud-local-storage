@@ -11,7 +11,7 @@ export default function User({ user }) {
 
   return (
     <article className="user-card" onClick={handleClick}>
-      <img src={user.image} alt={user.name} />
+      <img src={user.image || "https://placehold.co/600x400?text=Error+loading+image"} alt={user.name} />
       <h2>{user.name}</h2>
       <p className="title">{user.title}</p>
       <p>

@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
+import User from "../components/User";
 
 export default function UserDetailPage() {
   const [user, setUser] = useState([]); // state to handle the data (user)
@@ -39,21 +40,15 @@ export default function UserDetailPage() {
   }
 
   return (
-    <section className="page">
-      <article className="user-detail">
-        <img src={user.image} alt={user.name} />
-        <section>
-          <h1>{user.name}</h1>
-          <p>{user.title}</p>
-          <p>
-            <a href={`mailto: ${user.mail}`}>{user.mail}</a> | <a href={`tel: ${user.phone}`}>{user.phone}</a>
-          </p>
-          <button onClick={showUpdate}>Update user</button>
-          <button className="btn-outline" onClick={showDeleteDialog}>
-            Delete user
-          </button>
-        </section>
-      </article>
+    <section id="user-page" className="page">
+      <h1>{user.name}</h1>
+      <User user={user} />
+      <div className="btns">
+        <button onClick={showUpdate}>Update user</button>
+        <button className="btn-cancel" onClick={showDeleteDialog}>
+          Delete user
+        </button>
+      </div>
     </section>
   );
 }
