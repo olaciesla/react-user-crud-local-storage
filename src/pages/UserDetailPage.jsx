@@ -35,7 +35,7 @@ export default function UserDetailPage() {
   }
 
   function showUpdate() {
-    navigate(`/update/${params.id}`);
+    navigate(`/users/${params.id}/update`);
   }
 
   return (
