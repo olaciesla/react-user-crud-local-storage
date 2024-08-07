@@ -66,6 +66,15 @@ nav a.active {
   color: var(--green);
 }
 
+a {
+  color: var(--green);
+  text-decoration: none;
+  transition: 0.5s;
+}
+a:hover {
+  color: rgba(38, 76, 89, 0.7);
+}
+
 /* ---------- Typography ---------- */
 h1 {
   font-size: 3.2em;
@@ -125,27 +134,35 @@ h3 {
   }
 }
 
-.grid > article {
+/* ---------- User Card styling ---------- */
+
+.user-card {
   box-shadow: 1px 1px 8px rgba(0, 0, 0, 0.25);
   padding: 1.5em;
   background-color: var(--white);
   transition: 0.5s;
   animation: fadeIn 0.5s;
   cursor: pointer;
+  border-radius: 10px;
 }
 
-/* .grid > article ::first-letter {
-  text-transform: uppercase;
-} */
-
-.grid > article:hover {
+.user-card:hover {
   box-shadow: 0 8px 16px 0 var(--green);
 }
 
-.grid > article img {
+.user-card img {
   width: 100%;
   height: 200px;
   object-fit: cover;
+  border-radius: 10px;
+}
+
+.user-card h2 {
+  margin: 0.5em 0 0;
+}
+
+.user-card .title {
+  margin: 0;
 }
 
 /* ---------- form styling ---------- */

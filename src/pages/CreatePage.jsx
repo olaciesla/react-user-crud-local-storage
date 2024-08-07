@@ -12,7 +12,8 @@ export default function CreatePage() {
     event.preventDefault();
 
     const newUser = {
-      // key/name: value from state
+      // key/name: value from state,
+      id: Date.now().toString(), // create a unique id
       name: name,
       title: title,
       mail: mail,
