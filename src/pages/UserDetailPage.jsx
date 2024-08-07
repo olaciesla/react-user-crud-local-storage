@@ -44,10 +44,10 @@ export default function UserDetailPage() {
       <h1>{user.name}</h1>
       <User user={user} />
       <div className="btns">
-        <button onClick={showUpdate}>Update user</button>
         <button className="btn-cancel" onClick={showDeleteDialog}>
           Delete user
         </button>
+        <button onClick={showUpdate}>Update user</button>
       </div>
     </section>
   );

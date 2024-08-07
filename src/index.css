@@ -84,6 +84,7 @@ button {
   padding: 1em 2em;
   background-color: var(--green);
   transition: 0.5s;
+  width: 100%;
 }
 
 button:hover {
@@ -120,8 +121,6 @@ form input {
 
 form .btns {
   grid-column: 2;
-  display: flex;
-  gap: 0.5em;
 }
 
 form img {

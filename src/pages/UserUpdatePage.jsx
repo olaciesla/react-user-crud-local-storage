@@ -68,10 +68,10 @@ export default function UpdatePage() {
           onError={e => (e.target.src = "https://placehold.co/600x400?text=Error+loading+image")}
         />
         <div className="btns">
-          <button>Save</button>
           <button type="button" className="btn-cancel" onClick={handleCancel}>
             Cancel
           </button>
+          <button>Save</button>
         </div>
       </form>
     </section>

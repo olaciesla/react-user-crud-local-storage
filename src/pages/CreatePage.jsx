@@ -55,10 +55,10 @@ export default function CreatePage() {
           onError={e => (e.target.src = "https://placehold.co/600x400?text=Error+loading+image")}
         />
         <div className="btns">
-          <button>Create</button>
           <button type="button" className="btn-cancel" onClick={handleCancel}>
             Cancel
           </button>
+          <button>Create</button>
         </div>
       </form>
     </section>
