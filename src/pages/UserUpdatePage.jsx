@@ -32,19 +32,21 @@ export default function UpdatePage() {
 
     const data = localStorage.getItem("users");
     const usersData = JSON.parse(data) || [];
+    // map through the users
     const updatedUsers = usersData.map(user => {
+      // if the user id is the same as the id from the params
       if (user.id === params.id) {
-        return { ...user, ...userToUpdate };
+        return { ...user, ...userToUpdate }; // return the user with the updated data
       }
-      return user;
+      return user; // return the user without updating
     });
 
-    localStorage.setItem("users", JSON.stringify(updatedUsers));
-    navigate(`/users/${params.id}`);
+    localStorage.setItem("users", JSON.stringify(updatedUsers)); // save the users state to local storage
+    navigate(`/users/${params.id}`); // navigate to the user detail page
   }
 
   function handleCancel() {
-    navigate(-1);
+    navigate(-1); // go back
   }
 
   return (
