@@ -8,10 +8,9 @@ export default function HomePage() {
 
   useEffect(() => {
     const data = localStorage.getItem("users"); // get data from local storage
-    console.log(data);
     const usersData = JSON.parse(data) || []; // parse the data from string to javascript array
-    console.log(usersData);
     setUsers(usersData); // set the users state with the data from local storage
+    // getUsers();
   }, []);
 
   // async function getUsers() {
@@ -19,12 +18,11 @@ export default function HomePage() {
   //   const data = await response.json();
   //   setUsers(data);
 
-  //   localStorage.setItem("users", JSON.stringify(users)); // save the users state to local storage
+  //   localStorage.setItem("users", JSON.stringify(data)); // save the users state to local storage
   // }
 
   return (
     <section className="page">
-      <h1>Users</h1>
       <section className="grid">
         {users.map(user => (
           <User user={user} key={user.id} />

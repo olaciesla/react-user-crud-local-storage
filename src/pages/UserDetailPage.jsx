@@ -41,13 +41,15 @@ export default function UserDetailPage() {
 
   return (
     <section id="user-page" className="page">
-      <h1>{user.name}</h1>
-      <User user={user} />
-      <div className="btns">
-        <button className="btn-cancel" onClick={showDeleteDialog}>
-          Delete user
-        </button>
-        <button onClick={showUpdate}>Update user</button>
+      <div className="container">
+        <h1>{user.name}</h1>
+        <User user={user} />
+        <div className="btns">
+          <button className="btn-cancel" onClick={showDeleteDialog}>
+            Delete user
+          </button>
+          <button onClick={showUpdate}>Update user</button>
+        </div>
       </div>
     </section>
   );
