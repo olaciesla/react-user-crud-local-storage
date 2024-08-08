@@ -26,11 +26,8 @@ export default function UserDetailPage() {
 
   async function deleteUser() {
     const data = localStorage.getItem("users"); // get data from local storage
-    console.log(data);
     const usersData = JSON.parse(data) || []; // parse the data from string to javascript array
-    console.log(usersData);
     const updatedUsers = usersData.filter(user => user.id !== params.id); // filter out the user with the id from the params
-    console.log(updatedUsers);
     localStorage.setItem("users", JSON.stringify(updatedUsers)); // save the users state to local storage
     navigate("/"); // navigate to the home page
   }
