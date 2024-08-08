@@ -14,16 +14,13 @@ export default function HomePage() {
     setUsers(usersData); // set the users state with the data from local storage
   }, []);
 
-  // useEffect(() => {
-  //   if (users.length === 0) {
-  //     fetch("https://raw.githubusercontent.com/cederdorff/race/master/data/users.json")
-  //       .then(response => response.json())
-  //       .then(data => {
-  //         setUsers(data); // set the users state with the data from the API
-  //       });
-  //   }
+  // async function getUsers() {
+  //   const response = await fetch("https://raw.githubusercontent.com/cederdorff/race/master/data/users.json");
+  //   const data = await response.json();
+  //   setUsers(data);
+
   //   localStorage.setItem("users", JSON.stringify(users)); // save the users state to local storage
-  // }, [users]);
+  // }
 
   return (
     <section className="page">
