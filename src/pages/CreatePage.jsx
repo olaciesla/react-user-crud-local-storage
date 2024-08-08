@@ -21,7 +21,6 @@ export default function CreatePage() {
     };
 
     const data = localStorage.getItem("users"); // get data from local storage
-    console.log(data);
     const usersData = JSON.parse(data) || []; // parse the data from string to javascript array
 
     usersData.push(newUser); // add the new user to the array
