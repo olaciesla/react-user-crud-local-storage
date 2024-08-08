@@ -50,7 +50,7 @@ export default function UpdatePage() {
   return (
     <section className="page">
       <h1>Update</h1>
-      <form className="create-form" onSubmit={updateUser}>
+      <form onSubmit={updateUser}>
         <label htmlFor="">Name</label>
         <input id="name" type="text" value={name} placeholder="Type a name" onChange={e => setName(e.target.value)} />
         <label htmlFor="title">Title</label>

@@ -134,11 +134,9 @@ form img {
   gap: 0.5em;
 }
 
-/* ---------- Post Form Styling ---------- */
+/* ---------- Form Styling ---------- */
 
-.create-form,
-#sign-in-form,
-#sign-up-form {
+form {
   display: grid;
   grid-template-columns: 1fr 2fr;
   gap: 1em;

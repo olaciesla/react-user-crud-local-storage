@@ -37,7 +37,7 @@ export default function CreatePage() {
   return (
     <section className="page">
       <h1>Create New User</h1>
-      <form className="create-form" onSubmit={createUser}>
+      <form onSubmit={createUser}>
         <label htmlFor="">Name</label>
         <input id="name" type="text" value={name} placeholder="Type a name" onChange={e => setName(e.target.value)} />
         <label htmlFor="title">Title</label>
