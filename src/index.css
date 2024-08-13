@@ -244,10 +244,6 @@ nav a.active {
   cursor: pointer;
 }
 
-.grid > .user-card:hover {
-  box-shadow: 0 8px 16px 0 var(--green);
-}
-
 /* ---------- Filter Grid styling ---------- */
 
 .grid-filter {
