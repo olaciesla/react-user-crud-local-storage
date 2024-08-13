@@ -22,6 +22,7 @@ export default function HomePage() {
         usersData = await fetchUsers(); // fetch the data from the API
       }
 
+      usersData.sort((user1, user2) => user1.name.localeCompare(user2.name)); // sort the users array by name
       console.log(usersData);
       setUsers(usersData); // set the users state with the data from local storage
     }
