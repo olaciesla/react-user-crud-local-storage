@@ -3,16 +3,14 @@ import { useNavigate, useParams } from "react-router-dom";
 import User from "../components/User";
 
 export default function UserDetailPage() {
-  const [user, setUser] = useState([]); // state to handle the data (user)
+  const [user, setUser] = useState({}); // state to handle the data (user)
   const params = useParams();
   const navigate = useNavigate();
 
-  //the side effect - fetch user
+  //the side effect will run when the component mounts
   useEffect(() => {
     const data = localStorage.getItem("users"); // get data from local storage
-    console.log(data);
     const usersData = JSON.parse(data) || []; // parse the data from string to javascript array
-    console.log(usersData);
     const user = usersData.find(user => user.id === params.id); // find the user with the id from the params
     setUser(user); // set the user state with the data from local storage
   }, [params.id]); // <--- "[params.id]" VERY IMPORTANT!!!
