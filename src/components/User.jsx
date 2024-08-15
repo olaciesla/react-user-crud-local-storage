@@ -9,10 +9,17 @@ export default function User({ user }) {
     navigate(`/users/${user.id}`);
   }
 
+  function getInitials() {
+    const initials = user.mail?.split("@")[0]; // get the part before the @ symbol in the mail
+    return initials;
+  }
+
   return (
     <article className="user-card" onClick={handleClick}>
       <img src={user.image || "https://placehold.co/600x400?text=Error+loading+image"} alt={user.name} />
-      <h2>{user.name}</h2>
+      <h2>
+        {user.name} ({getInitials()})
+      </h2>
       <p className="title">{user.title}</p>
       <p>
         <a href={`mailto:${user.mail}`}>{user.mail}</a>
