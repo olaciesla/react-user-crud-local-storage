@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 
 export default function UpdatePage() {
-  const params = useParams();
+  const { id } = useParams();
   const navigate = useNavigate();
   const [name, setName] = useState("");
   const [title, setTitle] = useState("");
@@ -12,12 +12,12 @@ export default function UpdatePage() {
   useEffect(() => {
     const data = localStorage.getItem("users");
     const usersData = JSON.parse(data) || [];
-    const user = usersData.find(user => user.id === params.id);
+    const user = usersData.find(user => user.id === id);
     setName(user.name);
     setTitle(user.title);
     setMail(user.mail);
     setImage(user.image);
-  }, [params.id]); // <--- "[params.id]" VERY IMPORTANT!!!
+  }, [id]); // <--- "[params.id]" VERY IMPORTANT!!!
 
   async function updateUser(event) {
     event.preventDefault();
@@ -35,14 +35,14 @@ export default function UpdatePage() {
     // map through the users
     const updatedUsers = usersData.map(user => {
       // if the user id is the same as the id from the params
-      if (user.id === params.id) {
+      if (user.id === id) {
         return { ...user, ...userToUpdate }; // return the user with the updated data
       }
       return user; // return the user without updating
     });
 
     localStorage.setItem("users", JSON.stringify(updatedUsers)); // save the users state to local storage
-    navigate(`/users/${params.id}`); // navigate to the user detail page
+    navigate(`/users/${id}`); // navigate to the user detail page
   }
 
   function handleCancel() {
