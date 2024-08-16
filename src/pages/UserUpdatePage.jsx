@@ -1,35 +1,19 @@
 import { useState, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
+import UserForm from "../components/UserForm";
 
 export default function UpdatePage() {
   const { id } = useParams();
   const navigate = useNavigate();
-  const [name, setName] = useState("");
-  const [title, setTitle] = useState("");
-  const [mail, setMail] = useState("");
-  const [image, setImage] = useState("");
+  const [user, setUser] = useState({});
 
   useEffect(() => {
     const data = localStorage.getItem("users");
     const usersData = JSON.parse(data) || [];
-    const user = usersData.find(user => user.id === id);
-    setName(user.name);
-    setTitle(user.title);
-    setMail(user.mail);
-    setImage(user.image);
+    setUser(usersData.find(user => user.id === id));
   }, [id]); // <--- "[params.id]" VERY IMPORTANT!!!
 
-  async function updateUser(event) {
-    event.preventDefault();
-
-    const userToUpdate = {
-      // key/name: value from state
-      name: name,
-      title: title,
-      mail: mail,
-      image: image
-    };
-
+  async function updateUser(userToUpdate) {
     const data = localStorage.getItem("users");
     const usersData = JSON.parse(data) || [];
     // map through the users
@@ -53,30 +37,7 @@ export default function UpdatePage() {
     <section className="page">
       <div className="container">
         <h1>Update</h1>
-        <form onSubmit={updateUser}>
-          <label htmlFor="">Name</label>
-          <input id="name" type="text" value={name} placeholder="Type a name" onChange={e => setName(e.target.value)} />
-          <label htmlFor="title">Title</label>
-          <input id="title" type="text" value={title} placeholder="Type a title" onChange={e => setTitle(e.target.value)} />
-          <label htmlFor="mail">Mail</label>
-          <input id="mail" type="mail" value={mail} placeholder="Type a mail" onChange={e => setMail(e.target.value)} />
-          <label htmlFor="mail">Image URL</label>
-          <input type="url" value={image} placeholder="Paste image url" onChange={e => setImage(e.target.value)} />
-          <label htmlFor="image-preview"></label>
-          <img
-            id="image-preview"
-            className="image-preview"
-            src={image ? image : "https://placehold.co/600x400?text=Paste+an+image+URL"}
-            alt="Choose"
-            onError={e => (e.target.src = "https://placehold.co/600x400?text=Error+loading+image")}
-          />
-          <div className="btns">
-            <button type="button" className="btn-cancel" onClick={handleCancel}>
-              Cancel
-            </button>
-            <button>Save</button>
-          </div>
-        </form>
+        <UserForm onSubmit={updateUser} onCancel={handleCancel} user={user} />
       </div>
     </section>
   );

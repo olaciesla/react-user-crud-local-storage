@@ -36,7 +36,7 @@ export default function UserDetailPage() {
   return (
     <section id="user-page" className="page">
       <div className="container">
-        <h1>{user.name}</h1>
+        <h1>{user?.name}</h1>
         <User user={user} />
         <div className="btns">
           <button className="btn-cancel" onClick={showDeleteDialog}>
