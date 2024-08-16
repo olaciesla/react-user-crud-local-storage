@@ -7,10 +7,10 @@ export default function UserForm({ onSubmit, onCancel, user }) {
   const [image, setImage] = useState("");
 
   useEffect(() => {
-    if (user.name) setName(user.name);
-    if (user.title) setTitle(user.title);
-    if (user.mail) setMail(user.mail);
-    if (user.image) setImage(user.image);
+    if (user && user.name) setName(user.name);
+    if (user && user.title) setTitle(user.title);
+    if (user && user.mail) setMail(user.mail);
+    if (user && user.image) setImage(user.image);
   }, [user]);
 
   function handleOnSubmit(event) {

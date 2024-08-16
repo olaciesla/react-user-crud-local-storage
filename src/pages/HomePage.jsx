@@ -37,10 +37,10 @@ export default function HomePage() {
     return data; // return the data
   }
 
+  // Search, filter and sort the users array
   let filteredUsers = users.filter(user => user.name.toLowerCase().includes(searchTerm.toLowerCase()));
 
   const titles = [...new Set(users.map(user => user.title))]; // get all the unique titles from the users array
-  console.log(titles);
 
   if (filter != "") {
     filteredUsers = filteredUsers.filter(user => user.title === filter); // filter the users array by the selected title

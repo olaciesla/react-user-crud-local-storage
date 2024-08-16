@@ -5,7 +5,7 @@ export default function CreatePage() {
   const navigate = useNavigate();
 
   async function createUser(newUser) {
-    newUser.id = Date.now(); // add the current date as id
+    newUser.id = Date.now().toString(); // add the current date as id
 
     const data = localStorage.getItem("users"); // get data from local storage
     const usersData = JSON.parse(data) || []; // parse the data from string to javascript array
