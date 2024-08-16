@@ -17,6 +17,22 @@ export default function UserForm({ onSubmit, onCancel, user }) {
 
   function handleOnSubmit(event) {
     event.preventDefault();
+
+    // validate the form
+    if (!name || !title || !mail) {
+      alert("Please fill out all the fields");
+      return;
+    } else if (!image) {
+      alert("Please paste an image URL");
+      return;
+    } else if (!image.startsWith("http")) {
+      alert("Please paste a valid image URL");
+      return;
+    } else if (!mail.includes("@") || !mail.includes(".")) {
+      alert("Please paste a valid email");
+      return;
+    }
+
     const user = {
       // key/name: value from state,
       name: name,
