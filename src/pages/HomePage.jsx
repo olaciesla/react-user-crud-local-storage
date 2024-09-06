@@ -4,8 +4,12 @@ import User from "../components/User";
 export default function HomePage() {
   const [users, setUsers] = useState([]); // state to handle the data (users)
   const [searchTerm, setSearchTerm] = useState(""); // state to handle the search term
-  const [filter, setFilter] = useState(""); // state to handle the filter
-  const [sortBy, setSortBy] = useState("name"); // state to handle the sort
+  const [genreFilter, setGenreFilter] = useState(""); // state to handle genre filter
+  const [playersFilter, setPlayersFilter] = useState(""); // state to handle players filter
+  const [timeFilter, setTimeFilter] = useState(""); // state to handle time filter
+  const [languageFilter, setLanguageFilter] = useState(""); // state to handle language filter
+  const [difficultyFilter, setDifficultyFilter] = useState(""); // state to handle difficulty filter
+
   // users: name of the state
   // setUsers: name of the function to set the state
 
@@ -31,51 +35,127 @@ export default function HomePage() {
   }, []);
 
   async function fetchUsers() {
-    const response = await fetch("https://raw.githubusercontent.com/cederdorff/race/master/data/users.json"); // fetch the data from the API
+    const response = await fetch(
+      "https://raw.githubusercontent.com/olaciesla/Spilecafe/main/spilecafe.json"
+    ); // fetch the data from the API
     const data = await response.json(); // parse the data from string to javascript array
     localStorage.setItem("users", JSON.stringify(data)); // save the data to local storage
     return data; // return the data
   }
 
   // Search, filter and sort the users array
-  let filteredUsers = users.filter(user => user.name.toLowerCase().includes(searchTerm.toLowerCase()));
 
-  const titles = [...new Set(users.map(user => user.title))]; // get all the unique titles from the users array
+  const titles = [...new Set(users.map((user) => user.title))];
+  const genres = [...new Set(users.map((user) => user.genre))]; // get all the unique titles from the users array
 
-  if (filter != "") {
-    filteredUsers = filteredUsers.filter(user => user.title === filter); // filter the users array by the selected title
+  let filteredUsers = users.filter((user) =>
+    user.name.toLowerCase().includes(searchTerm.toLowerCase())
+  );
+
+  if (genreFilter) {
+    filteredUsers = filteredUsers.filter((user) => user.genre === genreFilter);
   }
 
-  filteredUsers.sort((user1, user2) => user1[sortBy].localeCompare(user2[sortBy])); // sort the users array by the selected sort
+  if (playersFilter) {
+    filteredUsers = filteredUsers.filter(
+      (user) => user.players === playersFilter
+    );
+  }
+
+  if (timeFilter) {
+    filteredUsers = filteredUsers.filter((user) => user.time === timeFilter);
+  }
+
+  if (languageFilter) {
+    filteredUsers = filteredUsers.filter(
+      (user) => user.language === languageFilter
+    );
+  }
+
+  if (difficultyFilter) {
+    filteredUsers = filteredUsers.filter(
+      (user) => user.difficulty === difficultyFilter
+    );
+  }
 
   return (
     <section className="page">
       <form className="grid-filter" role="search">
         <label>
-          Serach by Name <input placeholder="Search" type="search" onChange={e => setSearchTerm(e.target.value)} />
+          Search by Name{" "}
+          <input
+            placeholder="Search"
+            type="search"
+            onChange={(e) => setSearchTerm(e.target.value)}
+          />
         </label>
+
         <label>
-          Filter by Title
-          <select onChange={e => setFilter(e.target.value)}>
-            <option value="">select title</option>
-            {titles.map(title => (
-              <option key={title} value={title}>
-                {title}
+          Filter by Genre
+          <select onChange={(e) => setGenreFilter(e.target.value)}>
+            <option value="">select genre</option>
+            {genres.map((genre) => (
+              <option key={genre} value={genre}>
+                {genre}
               </option>
             ))}
           </select>
         </label>
+
         <label>
-          Sort by
-          <select name="sort-by" onChange={e => setSortBy(e.target.value)}>
-            <option value="name">Name</option>
-            <option value="title">Title</option>
-            <option value="mail">Mail</option>
+          Filter by Players
+          <select onChange={(e) => setPlayersFilter(e.target.value)}>
+            <option value="">select players</option>
+            {[...new Set(users.map((user) => user.players))].map((players) => (
+              <option key={players} value={players}>
+                {players}
+              </option>
+            ))}
+          </select>
+        </label>
+
+        <label>
+          Filter by Time
+          <select onChange={(e) => setTimeFilter(e.target.value)}>
+            <option value="">select time</option>
+            {[...new Set(users.map((user) => user.time))].map((time) => (
+              <option key={time} value={time}>
+                {time}
+              </option>
+            ))}
+          </select>
+        </label>
+
+        <label>
+          Filter by Language
+          <select onChange={(e) => setLanguageFilter(e.target.value)}>
+            <option value="">select language</option>
+            {[...new Set(users.map((user) => user.language))].map(
+              (language) => (
+                <option key={language} value={language}>
+                  {language}
+                </option>
+              )
+            )}
+          </select>
+        </label>
+
+        <label>
+          Filter by Difficulty
+          <select onChange={(e) => setDifficultyFilter(e.target.value)}>
+            <option value="">select difficulty</option>
+            {[...new Set(users.map((user) => user.difficulty))].map(
+              (difficulty) => (
+                <option key={difficulty} value={difficulty}>
+                  {difficulty}
+                </option>
+              )
+            )}
           </select>
         </label>
       </form>
       <section className="grid">
-        {filteredUsers.map(user => (
+        {filteredUsers.map((user) => (
           <User user={user} key={user.id} />
         ))}
       </section>
